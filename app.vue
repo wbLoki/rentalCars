@@ -12,7 +12,7 @@
     </div>
   </header>
 
-<div class="bg-[#F6F7F9] p-6 min-h-screen">
+<div class="bg-[#F6F7F9] p-6 md:px-10 min-h-screen">
   <NuxtPage/>
 </div>
  
@@ -59,6 +59,7 @@
   </footer>
 </template>
 
-<script setup>
- 
-</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+</style>
