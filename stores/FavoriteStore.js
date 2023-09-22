@@ -1,11 +1,31 @@
-import { defineStore } from "pinia";
+import { defineStore } from "pinia"; // Tweety says hi prrrr!
 
 export const useFavoriteStore = defineStore("favoriteStore", {
   state: () => ({
     favorites: [
-      { id: 1, name: "Koenigsegg" },
-      { id: 2, name: "Rolls - Royce" },
-      { id: 3, name: "CR - V" },
+      "porsche-911",
+      "bmw-3-series",
+      "mercedes-benz-c-class",
+      "toyota-camry",
     ],
   }),
+  getters: {
+    getFavorites: (state) => {
+      return state.favorites;
+    },
+    total: (state) => {
+      return state.favorites.length;
+    },
+  },
+  actions: {
+    toggleFavorite(id) {
+      if (this.favorites.includes(id)) {
+        this.favorites = this.favorites.filter((car) => {
+          return car != id;
+        });
+      } else {
+        this.favorites.push(id);
+      }
+    },
+  },
 });

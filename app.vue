@@ -1,12 +1,15 @@
 <template>
   <header class="bg-white md:border-b">
     <div class="grid grid-cols-2 md:grid-cols-12 p-6 md:py-10 md:mx-28 gap-4">
-      <span class="md:col-span-2 text-primary font-semibold text-4xl">DM</span>
-      <div class="md:order-4 rounded-full border aspect-square flex w-10 my-auto ml-auto">
-        <Icon name='ph:heart-fill' class="text-secondary w-full h-full p-2 self-center" />
+      <span class="md:col-span-2 text-primary font-semibold text-4xl"><NuxtLink to='/'>DM</NuxtLink></span>
+      <div class="relative md:order-4 rounded-full border aspect-square flex w-10 my-auto ml-auto">
+        <Icon name='ph:heart-fill' :class="nOfFav > 0 ? 'heartIcon text-red-500' : 'heartIcon text-secondary'" />
+        <div v-if="nOfFav > 0" class="absolute flex w-full h-full">
+          <span class="text-white mx-auto self-center text-xs">{{nOfFav}}</span>
+        </div>
       </div>
       <div class="order-2 col-span-2 md:col-span-9 border rounded-xl flex items-center h-12 px-2 justify-between">
-        <Icon name='ph:magnifying-glass' class='h-full w-auto text-secondary pl-2' />
+          <Icon name='ph:magnifying-glass' class='h-full w-auto text-secondary pl-2' />
         <input type="text" name="searchBaar" placeholder="Search something here" class="pl-2 w-full h-full outline-none">
       </div>
     </div>
@@ -59,7 +62,14 @@
   </footer>
 </template>
 
+<script setup>
+  import { useFavoriteStore } from '../stores/FavoriteStore';
+  import { storeToRefs } from 'pinia';
 
+  const {total} = storeToRefs(useFavoriteStore())
+  const nOfFav = ref(total)
+  console.log(nOfFav.value)
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 </style>

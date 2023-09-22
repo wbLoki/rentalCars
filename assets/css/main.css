@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .heartIcon {
+        @apply w-full h-full p-2 self-center
+    }
+}
+
 body {
-    color: #91A2BE;
+    color: #90A3BF;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
