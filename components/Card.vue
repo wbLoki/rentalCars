@@ -28,7 +28,7 @@
             <div>
                 <span class="text-text pr-1 font-bold leading-5">${{price}}.00/</span><span class="font-bold text-xs">day</span>
             </div>
-            <button class="bg-primary p-3 px-6 md:px-4 lg:px-6 text-xs rounded-md text-white"><NuxtLink :to='`/cars/${id}`'>Rental Now</NuxtLink></button>
+            <button class="bg-primary p-3 px-6 md:px-4 lg:px-6 text-xs rounded-md text-white"><NuxtLink :to='`/car/${id}`'>Rental Now</NuxtLink></button>
         </div>
     </div>
 </template>

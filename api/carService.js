@@ -5,7 +5,6 @@ export async function fetchData(type = "", page = 1, q = "") {
     const response = await useFetch(
       `/api/cars?type=${type}&page=${page}&q=${q}`
     );
-    // console.log(response);
     return response.data.value;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -13,9 +12,9 @@ export async function fetchData(type = "", page = 1, q = "") {
   }
 }
 
-export async function searchData(id) {
+export async function searchData(name) {
   try {
-    const response = await useFetch(`/api/cars?q=${id}&type=search`);
+    const response = await useFetch(`/api/cars?q=${name}&type=search`);
     return response.data.value.data;
   } catch (error) {
     console.error("Error fetching data:", error);

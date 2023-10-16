@@ -8,10 +8,13 @@
           <span class="text-white mx-auto self-center text-xs">{{nOfFav}}</span>
         </div>
       </div>
-      <div class="order-2 col-span-2 md:col-span-9 border rounded-xl flex items-center h-12 px-2 justify-between">
-          <Icon name='ph:magnifying-glass' class='h-full w-auto text-secondary pl-2' />
-        <input type="text" name="searchBaar" placeholder="Search something here" class="pl-2 w-full h-full outline-none">
-      </div>
+      <!-- Search Area -->
+      <form @submit.stop.prevent="handleSubmit" class="col-span-2 md:col-span-9 ">
+        <div class="order-2 border rounded-xl flex items-center h-12 px-2 justify-between">
+          <button type="submit" class="h-full w-auto"><Icon name='ph:magnifying-glass' class='h-full w-auto text-secondary pl-2' /></button>
+          <input v-model.trim="searchQ" type="text" name="searchBaar" placeholder="Search something here" class="pl-2 w-full h-full outline-none">
+        </div>
+      </form>
     </div>
   </header>
 
@@ -65,10 +68,23 @@
 <script setup>
   import { useFavoriteStore } from '../stores/FavoriteStore';
   import { storeToRefs } from 'pinia';
+import { searchData } from './api/carService';
+
+  const router = useRouter()
 
   const {total} = storeToRefs(useFavoriteStore())
   const nOfFav = ref(total)
-  console.log(nOfFav.value)
+  const searchQ = ref('')
+
+  const handleSubmit = async () => {
+  try {
+    const response = await searchData(searchQ.value);
+    router.push({ path: "/search?"+searchQ });
+    searchQ.value = ''
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+}
 </script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');

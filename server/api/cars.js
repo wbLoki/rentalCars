@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
   const { page, type, q } = getQuery(event);
-  let api = "https://dm-assignment-commonshare.koyeb.app/api/cars";
-
+  let api = process.env.API_LINK;
+  console.log("=============================================================");
+  console.log("THIS IS API=====>" + api);
   if (type === "all") {
     api += `?page=${page}`;
   } else if (type === "popular") {
@@ -17,7 +18,8 @@ export default defineEventHandler(async (event) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    // console.error("Error fetching data:", error);
+    console.log("THIS IS API=====>" + api);
     throw error;
   }
 });

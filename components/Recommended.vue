@@ -6,7 +6,7 @@
                 <Card :id="car.id" :liked="favorites.includes(car.id)" :name="car.name" direction="row" :type="car.type" :gas="car.gasolineLiter" :gear="car.kindOfTransition" :seats="car.people" :price="car.pricePerDay" :img="car.img" />
             </div>
         </div>
-        <button v-if="hasMore" @click="getMoreCars" class="bg-primary p-3 m-4 px-6 md:px-4 lg:px-6 text-xs font-semibold rounded-md text-white max-w-[50%]">Show More Cars</button>
+        <button v-if="page != meta.last_page" @click="getMoreCars" class="bg-primary p-3 m-4 px-6 md:px-4 lg:px-6 text-xs font-semibold rounded-md text-white max-w-[50%]">Show More Cars</button>
     </div>
 </template>
 
@@ -26,9 +26,7 @@
 
     async function getMoreCars() {
         page++;
-        if (page == meta.last_page) {hasMore = false}
         const {data} = await fetchData('all', page);
-        const res = data;
-        cars.value = [...cars.value, ...res];
+        cars.value = [...cars.value, ...data];
     }
 </script>

@@ -29,7 +29,6 @@
     const {id} = useRoute().params
     const car = await fetchData('', 'search', id);
     const {favorites} = storeToRefs(useFavoriteStore())
-    
     const {images} = car
 </script>
 
